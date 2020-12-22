@@ -14,23 +14,36 @@ import java.util.Objects;
  */
 public class Tarea implements Serializable {
     
+    public int usuarioid; 
     public int id;
     public String tarea;
     public String definicion;
     public String estado;
 
-    public Tarea(String tarea, String definicion, String estado) {
+    public Tarea(int usuarioid, String tarea, String definicion, String estado) {
+        this.usuarioid = usuarioid;
         this.tarea = tarea;
         this.definicion = definicion;
         this.estado = estado;
     }
 
-    public Tarea(int id, String tarea, String definicion, String estado) {
+    public Tarea(int usuarioid, int id, String tarea, String definicion, String estado) {
+        this.usuarioid = usuarioid;
         this.id = id;
         this.tarea = tarea;
         this.definicion = definicion;
         this.estado = estado;
     }
+
+    public int getUsuarioid() {
+        return usuarioid;
+    }
+
+    public void setUsuarioid(int usuarioid) {
+        this.usuarioid = usuarioid;
+    }
+
+    
 
     public int getId() {
         return id;

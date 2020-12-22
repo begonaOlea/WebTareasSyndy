@@ -22,15 +22,15 @@ public class DBTareas {
     
     static {
         tareas = new HashSet<Tarea>();
-        tareas.add(new Tarea ( ultimaTarea++, "Model", "Crear tareas y usuarios", "Hecho"));
-        tareas.add(new Tarea ( ultimaTarea++, "DB", "Crear DB tareas y DB usuarios", "Hecho"));
-        tareas.add(new Tarea ( ultimaTarea++, "Excepciones", "Definir excepciones", "Hecho"));
-        tareas.add(new Tarea ( ultimaTarea++, "Servlet tareas", "Generar servlet tareas", "En Progreso"));
-        tareas.add(new Tarea ( ultimaTarea++, "Servicios login", "Crear login y logout", "En Progreso"));
-        tareas.add(new Tarea ( ultimaTarea++, "Calculadora", "Hacer MVC", "Hacer"));
-        tareas.add(new Tarea ( ultimaTarea++, "Calculadora2", "Almacenar operaciones", "Hacer"));
-        tareas.add(new Tarea ( ultimaTarea++, "Juego3D", "Sonido juego", "Hacer"));
-        tareas.add(new Tarea ( ultimaTarea++, "Juego3D_2", "Motor físicas", "Hacer"));
+        tareas.add(new Tarea ( 1, ultimaTarea++, "Model", "Crear tareas y usuarios", "Hecho"));
+        tareas.add(new Tarea ( 2, ultimaTarea++, "DB", "Crear DB tareas y DB usuarios", "Hecho"));
+        tareas.add(new Tarea ( 1, ultimaTarea++, "Excepciones", "Definir excepciones", "Hecho"));
+        tareas.add(new Tarea ( 2, ultimaTarea++, "Servlet tareas", "Generar servlet tareas", "En Progreso"));
+        tareas.add(new Tarea ( 2, ultimaTarea++, "Servicios login", "Crear login y logout", "En Progreso"));
+        tareas.add(new Tarea ( 1, ultimaTarea++, "Calculadora", "Hacer MVC", "Hacer"));
+        tareas.add(new Tarea ( 3, ultimaTarea++, "Calculadora2", "Almacenar operaciones", "Hacer"));
+        tareas.add(new Tarea ( 3, ultimaTarea++, "Juego3D", "Sonido juego", "Hacer"));
+        tareas.add(new Tarea ( 1, ultimaTarea++, "Juego3D_2", "Motor físicas", "Hacer"));
         
     }
 
