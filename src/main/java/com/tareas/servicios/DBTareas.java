@@ -7,6 +7,7 @@ package com.tareas.servicios;
 
 import com.tareas.excepciones.ExcepcionDBTareas;
 import com.tareas.modelo.Tarea;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,10 +22,15 @@ public class DBTareas {
     
     static {
         tareas = new HashSet<Tarea>();
-        tareas.add(new Tarea ( ultimaTarea++, "calculadora", "Hacer MVC", "Hacer"));
-        tareas.add(new Tarea ( ultimaTarea++, "calculadora2", "Almacenar operaciones", "Hacer"));
-        tareas.add(new Tarea ( ultimaTarea++, "juego3D", "Sonido juego", "Hacer"));
-        tareas.add(new Tarea ( ultimaTarea++, "juego3D_2", "Motor físicas", "Hacer"));
+        tareas.add(new Tarea ( ultimaTarea++, "Model", "Crear tareas y usuarios", "Hecho"));
+        tareas.add(new Tarea ( ultimaTarea++, "DB", "Crear DB tareas y DB usuarios", "Hecho"));
+        tareas.add(new Tarea ( ultimaTarea++, "Excepciones", "Definir excepciones", "Hecho"));
+        tareas.add(new Tarea ( ultimaTarea++, "Servlet tareas", "Generar servlet tareas", "En Progreso"));
+        tareas.add(new Tarea ( ultimaTarea++, "Servicios login", "Crear login y logout", "En Progreso"));
+        tareas.add(new Tarea ( ultimaTarea++, "Calculadora", "Hacer MVC", "Hacer"));
+        tareas.add(new Tarea ( ultimaTarea++, "Calculadora2", "Almacenar operaciones", "Hacer"));
+        tareas.add(new Tarea ( ultimaTarea++, "Juego3D", "Sonido juego", "Hacer"));
+        tareas.add(new Tarea ( ultimaTarea++, "Juego3D_2", "Motor físicas", "Hacer"));
         
     }
 
@@ -38,6 +44,8 @@ public class DBTareas {
         }
     }
     
-    
+    public static synchronized  Collection<Tarea> listaTareas(){
+        return tareas;
+    }
     
 }
