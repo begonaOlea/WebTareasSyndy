@@ -53,9 +53,23 @@ public class DBTareas {
             if (usID == idUsuario){
                 tareasUsuario.add(tareaID);
             }
+            
         }
         
         return tareasUsuario;
     }
     
+    public static synchronized  Collection<Tarea> listaTareas(int idUsuario, String estado){
+       
+        tareasUsuario = new HashSet<Tarea>();
+        for (Tarea tareaID : tareas){
+            int usID = tareaID.getUsuarioid();
+            if (usID == idUsuario){
+                if (estado.equals(tareaID.getEstado()))
+                tareasUsuario.add(tareaID);
+            }
+        }
+            
+        return tareasUsuario;
+    }
 }

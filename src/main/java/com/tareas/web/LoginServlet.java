@@ -65,17 +65,18 @@ public class LoginServlet extends HttpServlet {
         
         
         if (valido){
-            jspAMostrar = "tareas.jsp";
+        resp.sendRedirect("tarea-Servlet");
             
         }else {
             req.setAttribute("mnsName", mnsName);
             req.setAttribute("mnsPas", mnsPas);
             req.setAttribute("mnsFinal", mnsFinal);
             jspAMostrar = "index.jsp";
+            RequestDispatcher rq = req.getRequestDispatcher(jspAMostrar);
+            rq.forward(req, resp);
         }
         
-        RequestDispatcher rq = req.getRequestDispatcher(jspAMostrar);
-        rq.forward(req, resp);
+        
     }
 
    

@@ -19,43 +19,42 @@
     <body>
         <h1 class="text-center">¡TU LISTA DE TAREAS!</h1>
         <%@include file="WEB-INF/vista/menu.jspf" %>
-        
-      
-        
-        <%
-            Usuario usMostrar = (Usuario) session.getAttribute("usuario");
-            int id = usMostrar.getIdUsuario(); 
-            Collection<Tarea> colectionTareas = DBTareas.listaTareas(id);
-            
-        %>
-        
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>TAREA</th>
-                    <th>DESCRIPCION</th>
-                    <th>ESTADO</th>
-                </tr>
-            </thead>
-
-            <%
-                for (Tarea tarea0 : colectionTareas) {
-            %>    
-            <tbody>
-                <tr>
-                    <td><%= tarea0.getTarea()%></td>
-                    <td><%= tarea0.getDefinicion() %></td>
-                    <td><%= tarea0.getEstado() %></td>
-
-                    
-                </tr>
-            </tbody>
-
-            <% }%>
-        </table>
-
-        
-        
-        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4" style="background-color:lavender;">HACER
+                    <div class="container mt-3">
+                        <c:forEach var="tarea" items="${ requestScope.colecionTareasHacer }">
+                            <ul class="list-group">
+                                <li class="list-group-item active">${ tarea.tarea}
+                                    <button type="button" class="btn btn-info">-->
+                                <a href="/cambiar-estado?id=${tarea.tarea.id}"></a>
+                                </button></li>
+                            </ul>
+                        </c:forEach>            
+                    </div>
+                </div>
+                <div class="col-sm-4" style="background-color:lavender;">EN PROGRESO
+                    <div class="container mt-3">
+                        <c:forEach var="tarea" items="${ requestScope.colectionTareasProgreso }">
+                            <ul class="list-group">
+                                <li class="list-group-item active">${ tarea.tarea}
+                                    <button type="button" class="btn btn-info">--></button></li>
+                            </ul>
+                        </c:forEach>            
+                    </div>
+                </div>
+                <div class="col-sm-4" style="background-color:lavender;">HECHO
+                    <div class="container mt-3">
+                        <c:forEach var="tarea" items="${ requestScope.colectionTareasHecho }">
+                            <ul class="list-group">
+                                <li class="list-group-item active">${tarea.tarea}
+                                    <button type="button" class="btn btn-info">--></button></li>
+                            </ul>
+                        </c:forEach>            
+                    </div>
+                </div>
+            </div>
+            <br />
+        </div>
     </body>
 </html>
