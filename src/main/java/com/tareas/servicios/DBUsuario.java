@@ -22,9 +22,9 @@ public class DBUsuario {
 
     static{
         usuarios = new HashSet<Usuario>();
-        usuarios.add(new Usuario(ultimoUsuario++, "Johanna", "simbrecht@birt.eus", "77777c"));
-        usuarios.add(new Usuario(ultimoUsuario++, "Sindy", "jimbrecht15@hotmail.com", "77777c"));
-        usuarios.add(new Usuario(ultimoUsuario++, "Paola", "gini.pao@gmail.com", "77777c"));
+        usuarios.add(new Usuario(++ultimoUsuario, "Johanna", "simbrecht@birt.eus", "77777c"));
+        usuarios.add(new Usuario(++ultimoUsuario, "Sindy", "jimbrecht15@hotmail.com", "77777c"));
+        usuarios.add(new Usuario(++ultimoUsuario, "Paola", "gini.pao@gmail.com", "77777c"));
         
     }
     

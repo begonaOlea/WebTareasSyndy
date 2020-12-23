@@ -19,6 +19,7 @@ public class DBTareas {
     
     public static int ultimaTarea= 0;
     public static Set<Tarea> tareas;
+    public static Set<Tarea> tareasUsuario;
     
     static {
         tareas = new HashSet<Tarea>();
@@ -44,8 +45,17 @@ public class DBTareas {
         }
     }
     
-    public static synchronized  Collection<Tarea> listaTareas(){
-        return tareas;
+    public static synchronized  Collection<Tarea> listaTareas(int idUsuario){
+       
+        tareasUsuario = new HashSet<Tarea>();
+        for (Tarea tareaID : tareas){
+            int usID = tareaID.getUsuarioid();
+            if (usID == idUsuario){
+                tareasUsuario.add(tareaID);
+            }
+        }
+        
+        return tareasUsuario;
     }
     
 }

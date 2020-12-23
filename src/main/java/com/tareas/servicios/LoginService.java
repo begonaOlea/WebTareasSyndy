@@ -18,7 +18,7 @@ import com.tareas.modelo.Usuario;
  */
 public class LoginService {
     
-    public void login(String mail, String contraseña, HttpSession sesion) throws LoginException{
+    public void login(String mail, String password, HttpSession sesion) throws LoginException{
         //crear variables 
         Collection<Usuario> datos = DBUsuario.listaUsuarios();
         Usuario nuevoUsuario = null;
@@ -36,9 +36,11 @@ public class LoginService {
         if (nuevoUsuario == null){
             throw new LoginException("El usuario no existe");
         }else{
-            if(nuevoUsuario.getContraseña().equals(contraseña)){
+            if(nuevoUsuario.getPasw().equals(password)){
                 //añadir a sesion
                 sesion.setAttribute("usuario", nuevoUsuario);
+                
+                
             }else {
                 throw new LoginException("La contraseña no coincide con el mail introducido");
             }

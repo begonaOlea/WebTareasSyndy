@@ -16,19 +16,19 @@ public class Usuario {
     public int idUsuario;
     public String nombre; 
     public String mail; 
-    public String contraseña; 
+    public String pasw; 
 
     public Usuario(String nombre, String mail, String contraseña) {
         this.nombre = nombre;
         this.mail = mail;
-        this.contraseña = contraseña;
+        this.pasw = contraseña;
     }
 
     public Usuario(int idUsuario, String nombre, String mail, String contraseña) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.mail = mail;
-        this.contraseña = contraseña;
+        this.pasw = contraseña;
     }
 
     public int getIdUsuario() {
@@ -55,12 +55,12 @@ public class Usuario {
         this.mail = mail;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPasw() {
+        return pasw;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPasw(String pasw) {
+        this.pasw = pasw;
     }
 
     @Override
@@ -94,7 +94,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "idUsuario=" + idUsuario + ", nombre=" + nombre + ", mail=" + mail + ", contrase\u00f1a=" + contraseña + '}';
+        return "Usuario{" + "idUsuario=" + idUsuario + ", nombre=" + nombre + ", mail=" + mail + ", contrase\u00f1a=" + pasw + '}';
     }
     
     

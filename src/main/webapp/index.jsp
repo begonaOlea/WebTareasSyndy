@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,36 +33,39 @@
         <%@include file="WEB-INF/vista/menu.jspf" %>
 
         <!--configuarar un card de tarea para el login -->
+        <div class="row float-right">
         <div class="card" style="width:400px">
             <img class="card-img-top"  src="img/login.png" alt="Card image" style="width:30%">
             <div class="card-body">
                 <h4 class="card-title">LOGIN</h4>
-                <form action="login" method="post">
-                    <div class="imgcontainer">
-                        <img src="img_avatar2.png" alt="Avatar" class="avatar">
-                    </div>
-
+                <!-- mensaje error alta -->
+            <c:if test="${not empty requestScope.mnsFinal }" >
+                <div class="alert alert-success" role="alert">
+                    ${requestScope.mnsFinal}
+                </div>
+            </c:if>
+                <form action="login-user" method="post">
                     <div class="container">
-                        <label for="uname"><b>Username</b></label>
+                        <label for="uname"><b>Correo: </b></label>
+                        <div class="col">${ requestScope.mnsName }</div>
                         <input type="text" placeholder="Enter Username" name="uname" required>
 
-                        <label for="psw"><b>Password</b></label>
+                        <label for="psw"><b>Contraseña: </b></label>
                         <input type="password" placeholder="Enter Password" name="psw" required>
-
-                        <button type="submit">Login</button>
+                        <div class="col">${ requestScope.mnsPas }</div>
+                        <button type="submit">Ingresar</button>
                         <label>
-                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                            <input type="checkbox" checked="checked" name="remember"> Recuerdame
                         </label>
                     </div>
 
                     <div class="container" style="background-color:#f1f1f1">
-                        <button type="button" class="cancelbtn">Cancel</button>
-                        <span class="psw">Forgot <a href="#">password?</a></span>
+                       <span class="psw">Olvidaste <a href="#">password?</a></span>
                     </div>
                 </form>
             </div>
         </div>
-        <br>
+         </div>
 
     </body>
 </html>
