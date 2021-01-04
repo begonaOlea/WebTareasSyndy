@@ -23,15 +23,15 @@ public class DBTareas {
     
     static {
         tareas = new HashSet<Tarea>();
-        tareas.add(new Tarea ( 1, ultimaTarea++, "Model", "Crear tareas y usuarios", "Hecho"));
-        tareas.add(new Tarea ( 2, ultimaTarea++, "DB", "Crear DB tareas y DB usuarios", "Hecho"));
-        tareas.add(new Tarea ( 1, ultimaTarea++, "Excepciones", "Definir excepciones", "Hecho"));
-        tareas.add(new Tarea ( 2, ultimaTarea++, "Servlet tareas", "Generar servlet tareas", "En Progreso"));
-        tareas.add(new Tarea ( 2, ultimaTarea++, "Servicios login", "Crear login y logout", "En Progreso"));
-        tareas.add(new Tarea ( 1, ultimaTarea++, "Calculadora", "Hacer MVC", "Hacer"));
-        tareas.add(new Tarea ( 3, ultimaTarea++, "Calculadora2", "Almacenar operaciones", "Hacer"));
-        tareas.add(new Tarea ( 3, ultimaTarea++, "Juego3D", "Sonido juego", "Hacer"));
-        tareas.add(new Tarea ( 1, ultimaTarea++, "Juego3D_2", "Motor físicas", "Hacer"));
+        tareas.add(new Tarea ( 1, ++ultimaTarea, "Model", "Crear tareas y usuarios", "Hecho"));
+        tareas.add(new Tarea ( 2, ++ultimaTarea, "DB", "Crear DB tareas y DB usuarios", "Hecho"));
+        tareas.add(new Tarea ( 1, ++ultimaTarea, "Excepciones", "Definir excepciones", "Hecho"));
+        tareas.add(new Tarea ( 2, ++ultimaTarea, "Servlet tareas", "Generar servlet tareas", "En Progreso"));
+        tareas.add(new Tarea ( 2, ++ultimaTarea, "Servicios login", "Crear login y logout", "En Progreso"));
+        tareas.add(new Tarea ( 1, ++ultimaTarea, "Calculadora", "Hacer MVC", "Hacer"));
+        tareas.add(new Tarea ( 3, ++ultimaTarea, "Calculadora2", "Almacenar operaciones", "Hacer"));
+        tareas.add(new Tarea ( 3, ++ultimaTarea, "Juego3D", "Sonido juego", "Hacer"));
+        tareas.add(new Tarea ( 1, ++ultimaTarea, "Juego3D_2", "Motor físicas", "Hacer"));
         
     }
 
@@ -53,9 +53,7 @@ public class DBTareas {
             if (usID == idUsuario){
                 tareasUsuario.add(tareaID);
             }
-            
         }
-        
         return tareasUsuario;
     }
     
@@ -71,5 +69,27 @@ public class DBTareas {
         }
             
         return tareasUsuario;
+    }
+    
+    public static void cambiarEstadoUp (int id) throws ExcepcionDBTareas{
+        
+        boolean encontrado = false; 
+        for (Tarea tareaID : tareas){
+            int idTarea = tareaID.getId();
+            if (idTarea == id ){
+                encontrado = true;
+                if (tareaID.estado.equals("Hacer")){
+                    tareaID.setEstado("En Progreso");
+                    break;
+                }else if (tareaID.estado.equals("En Progreso")){
+                    tareaID.setEstado("Hecho");
+                    break;
+                }
+            }
+        }    
+        if (!encontrado){
+                throw  new ExcepcionDBTareas ("No se ha cambiado el estado de la tarea");
+        }
+        
     }
 }

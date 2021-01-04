@@ -35,7 +35,7 @@ public class TareaServlet extends HttpServlet {
         Collection<Tarea> colectionTareasHacer = DBTareas.listaTareas(id, "Hacer");
         Collection<Tarea> colectionTareasHecho = DBTareas.listaTareas(id, "Hecho");
         Collection<Tarea> colectionTareasProgreso = DBTareas.listaTareas(id, "En Progreso");
-        req.setAttribute("colecionTareasHacer", colectionTareasHacer); 
+        req.setAttribute("colectionTareasHacer", colectionTareasHacer); 
         req.setAttribute("colectionTareasHecho", colectionTareasHecho); 
         req.setAttribute("colectionTareasProgreso", colectionTareasProgreso); 
         RequestDispatcher rq = req.getRequestDispatcher("tareas.jsp");

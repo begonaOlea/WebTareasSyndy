@@ -14,44 +14,64 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%@include file="WEB-INF/vista/bootstrap.jspf"%>
         <title>JSP Page</title>
     </head>
     <body>
-        <h1 class="text-center">¡TU LISTA DE TAREAS!</h1>
+
         <%@include file="WEB-INF/vista/menu.jspf" %>
-        <div class="container-fluid">
+        <c:if test="${not empty requestScope.mensaje}" >
+                        <div class="alert alert-success" role="alert">
+                           ${requestScope.mensaje}
+                        </div>
+                    </c:if>
+        <br />
+        <div class="container">
             <div class="row">
-                <div class="col-sm-4" style="background-color:lavender;">HACER
-                    <div class="container mt-3">
-                        <c:forEach var="tarea" items="${ requestScope.colecionTareasHacer }">
-                            <ul class="list-group">
-                                <li class="list-group-item active">${ tarea.tarea}
-                                    <button type="button" class="btn btn-info">-->
-                                <a href="/cambiar-estado?id=${tarea.tarea.id}"></a>
-                                </button></li>
-                            </ul>
-                        </c:forEach>            
-                    </div>
+                <div class="col-sm font-weight-bold text-center">HACER
+
+                    <c:forEach var="tarea" items="${ requestScope.colectionTareasHacer }">
+                        <ul class="list-group">
+                            <li class="list-group-item " >${ tarea.tarea}
+                                <button type="button" class="btn btn-info font-weight-bold float-right">
+                                <a href="cambiar-estado?id=${tarea.id}"> →</a>
+                                </button>
+                            </li>
+                        </ul>
+                    </c:forEach>            
+
                 </div>
-                <div class="col-sm-4" style="background-color:lavender;">EN PROGRESO
-                    <div class="container mt-3">
-                        <c:forEach var="tarea" items="${ requestScope.colectionTareasProgreso }">
-                            <ul class="list-group">
-                                <li class="list-group-item active">${ tarea.tarea}
-                                    <button type="button" class="btn btn-info">--></button></li>
-                            </ul>
-                        </c:forEach>            
-                    </div>
+                <div class="col-sm font-weight-bold text-center">EN PROGRESO
+
+                    <c:forEach var="tarea" items="${ requestScope.colectionTareasProgreso }">
+                        <ul class="list-group">
+                            <li class="list-group-item ">
+                                <button type="button" class="btn btn-info font-weight-bold float-left"> ←
+                                </button>
+                                ${ tarea.tarea}
+                                <button type="button" class="btn btn-info font-weight-bold float-right">
+                                <a href="cambiar-estado?id=${tarea.id}"> →</a>
+                                </button>
+                            </li>
+                        </ul>
+                    </c:forEach>            
+
                 </div>
-                <div class="col-sm-4" style="background-color:lavender;">HECHO
-                    <div class="container mt-3">
-                        <c:forEach var="tarea" items="${ requestScope.colectionTareasHecho }">
-                            <ul class="list-group">
-                                <li class="list-group-item active">${tarea.tarea}
-                                    <button type="button" class="btn btn-info">--></button></li>
-                            </ul>
-                        </c:forEach>            
-                    </div>
+                <div class="col-sm font-weight-bold text-center" >HECHO
+
+                    <c:forEach var="tarea" items="${ requestScope.colectionTareasHecho }">
+                        <ul class="list-group">
+                            
+                            <li class="list-group-item ">
+                                <button type="button" class="btn btn-info font-weight-bold float-left"> ←
+                                </button>
+                                ${tarea.tarea}
+                                <button type="button" class="btn btn-info font-weight-bold float-right"> →
+                                </button>
+                            </li>
+                        </ul>
+                    </c:forEach>            
+
                 </div>
             </div>
             <br />

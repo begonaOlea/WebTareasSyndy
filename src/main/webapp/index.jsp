@@ -29,15 +29,14 @@
     </head>
 
     <body>
-        <h1 class="text-center">¡TU LISTA DE TAREAS!</h1>
         <%@include file="WEB-INF/vista/menu.jspf" %>
-
-        <!--configuarar un card de tarea para el login -->
-        <div class="row float-right">
-        <div class="card" style="width:400px">
-            <img class="card-img-top"  src="img/login.png" alt="Card image" style="width:30%">
+        <br />
+        <!--configurar un card  para el login -->
+        <div class="row float-right border border-primary rounded">
+        <div class="card bg-transparent text-dark" style="width:300px" >
+            <img class="card-img border border-dark rounded-circle rounded mx-auto d-block "  src="img/login.png" alt="Card image" style="width:20%">
             <div class="card-body">
-                <h4 class="card-title">LOGIN</h4>
+                <h4 class="card-title font-weight-bold text-center">LOGIN</h4>
                 <!-- mensaje error alta -->
             <c:if test="${not empty requestScope.mnsFinal }" >
                 <div class="alert alert-success" role="alert">
@@ -48,9 +47,10 @@
                     <div class="container">
                         <label for="uname"><b>Correo: </b></label>
                         <div class="col">${ requestScope.mnsName }</div>
-                        <input type="text" placeholder="Enter Username" name="uname" required>
-
+                        <input type="text" placeholder="Enter Us<ername" name="uname" required>
+                        <br />
                         <label for="psw"><b>Contraseña: </b></label>
+                        <br />
                         <input type="password" placeholder="Enter Password" name="psw" required>
                         <div class="col">${ requestScope.mnsPas }</div>
                         <button type="submit">Ingresar</button>

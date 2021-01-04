@@ -5,8 +5,13 @@
  */
 package com.tareas.web;
 
+import com.tareas.excepciones.ExcepcionDBTareas;
+import com.tareas.servicios.DBTareas;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,69 +25,46 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "CambiarEstadoServlet", urlPatterns = {"/cambiar-estado"})
 public class CambiarEstadoServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CambiarEstadoServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CambiarEstadoServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+    //1. Leer param id  
+        //2. Validar 
+        //    2.1 . No es valido ir a la pagian lista-libros.jps pasando el 
+        //          mensaje de error
+        //    2.2  Es valido.  Alquilar  -- MODEL
+        //          y Despachar la peticion al JSP  lista-libros.jps
+    
+    
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
+        String idPar = req.getParameter("id");
+        int id= 0;
+        String mns = null; 
+        
+        if (idPar == null || idPar.trim().length() == 0){
+            mns = "No existe este id para esta tarea";
+        }else {
+            try {
+                id = Integer.parseInt(idPar);
+            } catch (NumberFormatException ex) {
+                mns = "No es un tipo válido";
+            }
         }
-    }
+        
+        if (mns == null){
+            try {
+                DBTareas.cambiarEstadoUp(id);
+                mns= "Tarea actualizada";
+            } catch (ExcepcionDBTareas ex) {
+                mns= "No se actualizo la tarea";
+            }
+        }
+        
+        //despachar al JSP
+        RequestDispatcher rd = req.getRequestDispatcher("tareas.jsp");
+                
+        req.setAttribute("mensaje", mns);        
+        rd.forward(req, resp);
+    }//fin metodo get
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
-}
+    
+}//fin de clase 
