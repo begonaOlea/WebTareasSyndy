@@ -32,9 +32,9 @@ public class TareaServlet extends HttpServlet {
         HttpSession sesion = req.getSession();
         Usuario usMostrar = (Usuario) sesion.getAttribute("usuario");
         int id = usMostrar.getIdUsuario();
-        Collection<Tarea> colectionTareasHacer = DBTareas.listaTareas(id, "Hacer");
-        Collection<Tarea> colectionTareasHecho = DBTareas.listaTareas(id, "Hecho");
-        Collection<Tarea> colectionTareasProgreso = DBTareas.listaTareas(id, "En Progreso");
+        Collection<Tarea> colectionTareasHacer = DBTareas.listaTareasUsuario(id, "Hacer");
+        Collection<Tarea> colectionTareasHecho = DBTareas.listaTareasUsuario(id, "Hecho");
+        Collection<Tarea> colectionTareasProgreso = DBTareas.listaTareasUsuario(id, "En Progreso");
         req.setAttribute("colectionTareasHacer", colectionTareasHacer); 
         req.setAttribute("colectionTareasHecho", colectionTareasHecho); 
         req.setAttribute("colectionTareasProgreso", colectionTareasProgreso); 

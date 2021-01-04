@@ -9,8 +9,6 @@ import com.tareas.excepciones.ExcepcionDBTareas;
 import com.tareas.servicios.DBTareas;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,11 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author user
+ * @author joha
  */
-@WebServlet(name = "CambiarEstadoServlet", urlPatterns = {"/cambiar-estado"})
-public class CambiarEstadoServlet extends HttpServlet {
+@WebServlet(name = "CambiarEstadoDown", urlPatterns = {"/cambio-down"})
+public class CambiarEstadoDown extends HttpServlet {
 
+    
     //1. Leer param id  
         //2. Validar 
         //    2.1 . No es valido ir a la pagian lista-libros.jps pasando el 
@@ -52,7 +51,7 @@ public class CambiarEstadoServlet extends HttpServlet {
         
         if (mns == null){
             try {
-                DBTareas.cambiarEstadoUp(id);
+                DBTareas.cambiarEstadoDown(id);
                 mns= "Tarea actualizada";
                 
             } catch (ExcepcionDBTareas ex) {
@@ -67,7 +66,4 @@ public class CambiarEstadoServlet extends HttpServlet {
         rd.forward(req, resp);
         }
     }//fin metodo get
-
-    
-    
-}//fin de clase 
+}

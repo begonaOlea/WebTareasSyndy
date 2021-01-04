@@ -57,7 +57,7 @@ public class DBTareas {
         return tareasUsuario;
     }
     
-    public static synchronized  Collection<Tarea> listaTareas(int idUsuario, String estado){
+    public static synchronized  Collection<Tarea> listaTareasUsuario(int idUsuario, String estado){
        
         tareasUsuario = new HashSet<Tarea>();
         for (Tarea tareaID : tareas){
@@ -83,6 +83,31 @@ public class DBTareas {
                     break;
                 }else if (tareaID.estado.equals("En Progreso")){
                     tareaID.setEstado("Hecho");
+                    break;
+                }else if (tareaID.estado.equals("Hecho")){
+                    tareas.remove(tareaID);
+                    break;
+                }
+            }
+        }    
+        if (!encontrado){
+                throw  new ExcepcionDBTareas ("No se ha cambiado el estado de la tarea");
+        }
+        
+    }
+    
+    
+    public static void cambiarEstadoDown(int id) throws ExcepcionDBTareas{
+        boolean encontrado = false; 
+        for (Tarea tareaID : tareas){
+            int idTarea = tareaID.getId();
+            if (idTarea == id ){
+                encontrado = true;
+                if (tareaID.estado.equals("Hecho")){
+                    tareaID.setEstado("En Progreso");
+                    break;
+                }else if (tareaID.estado.equals("En Progreso")){
+                    tareaID.setEstado("Hacer");
                     break;
                 }
             }
