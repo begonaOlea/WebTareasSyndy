@@ -15,7 +15,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="WEB-INF/vista/bootstrap.jspf"%>
-        <title>JSP Page</title>
+        <title>Mis Tareas</title>
     </head>
     <body>
 
@@ -32,13 +32,13 @@
                     <c:forEach var="tarea" items="${ requestScope.colectionTareasHacer }">
                         <ul class="list-group">
                             <li class="list-group-item " >
-                                <button type="button" class="btn btn-info font-weight-bold float-left">
-                                <a href="cambio-down?id=${tarea.id}"> ⇐</a>
-                                </button>
+                                <a href="cambio-down?id=${tarea.id}"> 
+                                    <button type="button" class="btn btn-info font-weight-bold float-left">⇐</button>
+                                </a>
                                 ${ tarea.tarea}
-                                <button type="button" class="btn btn-info font-weight-bold float-right">
-                                <a href="cambiar-estado?id=${tarea.id}"> ⇒</a>
-                                </button>
+                                <a href="cambiar-estado?id=${tarea.id}"> 
+                                    <button type="button" class="btn btn-info font-weight-bold float-right">⇒</button>
+                                </a>
                             </li>
                         </ul>
                     </c:forEach>            
@@ -48,13 +48,13 @@
                     <c:forEach var="tarea" items="${ requestScope.colectionTareasProgreso }">
                         <ul class="list-group">
                             <li class="list-group-item ">
-                                <button type="button" class="btn btn-info font-weight-bold float-left">
-                                <a href="cambio-down?id=${tarea.id}"> ⇐</a>
-                                </button>
+                                <a href="cambio-down?id=${tarea.id}"> 
+                                    <button type="button" class="btn btn-info font-weight-bold float-left">⇐</button>
+                                </a>
                                 ${ tarea.tarea}
-                                <button type="button" class="btn btn-info font-weight-bold float-right">
-                                <a href="cambiar-estado?id=${tarea.id}"> ⇒</a>
-                                </button>
+                                <a href="cambiar-estado?id=${tarea.id}"> 
+                                    <button type="button" class="btn btn-info font-weight-bold float-right">⇒</button>
+                                </a>
                             </li>
                         </ul>
                     </c:forEach>            
@@ -64,13 +64,13 @@
                     <c:forEach var="tarea" items="${ requestScope.colectionTareasHecho }">
                         <ul class="list-group">
                             <li class="list-group-item ">
-                                <button type="button" class="btn btn-info font-weight-bold float-left">
-                                <a href="cambio-down?id=${tarea.id}"> ⇐</a>
-                                </button>
+                                <a href="cambio-down?id=${tarea.id}"> 
+                                    <button type="button" class="btn btn-info font-weight-bold float-left">⇐</button>
+                                </a>
                                 ${ tarea.tarea}
-                                <button type="button" class="btn btn-info font-weight-bold float-right">
-                                <a href="cambiar-estado?id=${tarea.id}"> ⇒</a>
-                                </button>
+                                <a href="cambiar-estado?id=${tarea.id}"> 
+                                    <button type="button" class="btn btn-info font-weight-bold float-right">⇒</button>
+                                </a>
                             </li>
                         </ul>
                     </c:forEach>            
@@ -78,6 +78,12 @@
                 
             </div>
             <br />
+            <div class="d-flex justify-content-center">
+                <a href="registroTarea.jsp">
+                <img src="img/tarea.png" alt="logo" style="width:50px"/>NUEVA
+                </a>
+            </div>
+            
         </div>
     </body>
 </html>

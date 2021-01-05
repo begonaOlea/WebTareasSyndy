@@ -37,9 +37,21 @@ public class DBTareas {
 
     public DBTareas() {
     }
+
+    public static int getUltimaTarea() {
+        return ultimaTarea;
+    }
+
+    public static void setUltimaTarea(int ultimaTarea) {
+        DBTareas.ultimaTarea = ultimaTarea;
+    }
+    
+    
+    
     
     public static void addTarea(Tarea nuevaTarea) throws ExcepcionDBTareas{
         boolean anadir = tareas.add(nuevaTarea);
+        ultimaTarea++;
         if(!anadir){
             throw new ExcepcionDBTareas ("No ha sido agregada la tarea, revisa que no estes repitiendo su nombre");
         }

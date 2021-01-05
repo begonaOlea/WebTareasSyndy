@@ -12,6 +12,9 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="WEB-INF/vista/bootstrap.jspf"%>
+        
+        <style><%@include file="/WEB-INF/vista/estilos.css"%></style>
+        
         <title>Inicio</title>
 
         <style>
@@ -32,8 +35,8 @@
         <%@include file="WEB-INF/vista/menu.jspf" %>
         <br />
         <!--configurar un card  para el login -->
-        <div class="row float-right border border-primary rounded">
-        <div class="card bg-transparent text-dark" style="width:300px" >
+        <div class="row float-right border border-secondary rounded">
+        <div class="card bg-dark text-white" style="width:300px" >
             <img class="card-img border border-dark rounded-circle rounded mx-auto d-block "  src="img/login.png" alt="Card image" style="width:20%">
             <div class="card-body">
                 <h4 class="card-title font-weight-bold text-center">LOGIN</h4>
@@ -47,7 +50,7 @@
                     <div class="container">
                         <label for="uname"><b>Correo: </b></label>
                         <div class="col">${ requestScope.mnsName }</div>
-                        <input type="text" placeholder="Enter Us<ername" name="uname" required>
+                        <input type="text" placeholder="Enter Username" name="uname" required>
                         <br />
                         <label for="psw"><b>Contraseña: </b></label>
                         <br />
@@ -59,9 +62,6 @@
                         </label>
                     </div>
 
-                    <div class="container" style="background-color:#f1f1f1">
-                       <span class="psw">Olvidaste <a href="#">password?</a></span>
-                    </div>
                 </form>
             </div>
         </div>
