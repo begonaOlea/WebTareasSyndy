@@ -5,12 +5,19 @@
  */
 package com.tareas.web;
 
+import com.tareas.excepciones.ExcepcionDBUsuarios;
+import com.tareas.excepciones.LoginException;
+import com.tareas.modelo.Usuario;
+import com.tareas.servicios.DBUsuario;
+import com.tareas.servicios.LoginService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -18,69 +25,72 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AltaUsuarioServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AltaUsuarioServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AltaUsuarioServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
+        String nombre = req.getParameter("nombre");
+        String email = req.getParameter("email");
+        String psw = req.getParameter("psw");
+        
+        String mnsnombre = null;
+        String mnsEmail = null;
+        String mnspsw = null; 
+        String mnsError = null; 
+        boolean valido = true; 
+        
+        int ultimoUsuario = 0; 
+        
+        if (nombre == null || nombre.trim().length() ==0){
+            mnsnombre = "Debes introducir un nombre"; 
+            valido = false; 
+        }
+        if (email == null || email.trim().length() ==0){
+            mnsEmail = "Debes introducir un email"; 
+            valido = false; 
+        }
+        if (psw == null || psw.trim().length() ==0){
+            mnspsw = "Debes introducir una contraseña"; 
+            valido = false; 
+        }
+        
+        if (valido){
+            try {
+                ultimoUsuario = DBUsuario.getUltimoUsuario();
+                Usuario nuevo = new Usuario(++ultimoUsuario, nombre, email, psw);
+                DBUsuario.addUsuario(nuevo);
+            } catch (ExcepcionDBUsuarios e) {
+                mnsError = "El email introducido esta en uso ";
+                valido = false; 
+            }
+        }
+        
+        if (valido){
+            try {
+                //pedir la sesion al request
+                HttpSession sesion = req.getSession();
+                //crear login service y enviar datos al login service 
+                LoginService logServ = new LoginService();
+                logServ.login(email, psw, sesion);
+               
+            }catch(LoginException e){
+                mnsError = e.getMessage();
+                valido = false; 
+            }
+        }
+        
+        if (valido){
+        resp.sendRedirect("tareas.jsp");
+            
+        }else {
+            req.setAttribute("mnsName", mnsnombre );
+            req.setAttribute("mnsEmail", mnsEmail );
+            req.setAttribute("mnsPas", mnspsw);
+            req.setAttribute("mnsFinal",mnsError );
+            
+            RequestDispatcher rq = req.getRequestDispatcher("registroUsuario.jsp");
+            rq.forward(req, resp);
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    
 }

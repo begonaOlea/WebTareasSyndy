@@ -30,6 +30,16 @@ public class DBUsuario {
     
     public DBUsuario() {
     }
+
+    public static int getUltimoUsuario() {
+        return ultimoUsuario;
+    }
+
+    public static void setUltimoUsuario(int ultimoUsuario) {
+        DBUsuario.ultimoUsuario = ultimoUsuario;
+    }
+    
+    
     
     public static void addUsuario(Usuario u) throws ExcepcionDBUsuarios{
         boolean agregar = usuarios.add(u);

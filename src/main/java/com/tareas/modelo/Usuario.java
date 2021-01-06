@@ -65,9 +65,8 @@ public class Usuario {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 67 * hash + this.idUsuario;
-        hash = 67 * hash + Objects.hashCode(this.mail);
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.mail);
         return hash;
     }
 
@@ -83,14 +82,13 @@ public class Usuario {
             return false;
         }
         final Usuario other = (Usuario) obj;
-        if (this.idUsuario != other.idUsuario) {
-            return false;
-        }
         if (!Objects.equals(this.mail, other.mail)) {
             return false;
         }
         return true;
     }
+
+    
 
     @Override
     public String toString() {

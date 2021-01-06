@@ -19,3 +19,7 @@ a{
   border: 1px solid black;
   opacity: 0.7;
 }
+
+.card{
+    opacity: 0.7;
+}

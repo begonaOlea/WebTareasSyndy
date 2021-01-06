@@ -12,14 +12,11 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="WEB-INF/vista/bootstrap.jspf"%>
-        
         <style><%@include file="/WEB-INF/vista/estilos.css"%></style>
-        
         <title>Inicio</title>
-
+        
         <style>
             body  {
-
                 background-image: url("img/lightbulb-2692247_1920.jpg");
                 background-color: #cccccc;
                 height: 800px;
@@ -36,7 +33,7 @@
         <br />
         <!--configurar un card  para el login -->
         <div class="row float-right border border-secondary rounded">
-        <div class="card bg-dark text-white" style="width:300px" >
+        <div class="card bg-secondary text-white" style="width:300px" >
             <img class="card-img border border-dark rounded-circle rounded mx-auto d-block "  src="img/login.png" alt="Card image" style="width:20%">
             <div class="card-body">
                 <h4 class="card-title font-weight-bold text-center">LOGIN</h4>

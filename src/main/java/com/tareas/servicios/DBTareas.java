@@ -46,9 +46,7 @@ public class DBTareas {
         DBTareas.ultimaTarea = ultimaTarea;
     }
     
-    
-    
-    
+        
     public static void addTarea(Tarea nuevaTarea) throws ExcepcionDBTareas{
         boolean anadir = tareas.add(nuevaTarea);
         ultimaTarea++;

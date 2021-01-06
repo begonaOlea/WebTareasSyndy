@@ -15,10 +15,10 @@
             <c:when test="${ not empty sessionScope.usuario}">
                 <h5> Usuario:  ${ sessionScope.usuario.nombre} 
                 </h5>
-                <a href="logout">logout</a>
+                <a href="logout">Logout</a>
             </c:when>
             <c:otherwise>
-                <a href="login.jsp">login</a>
+                <a href="login.jsp">Login</a>
             </c:otherwise>
         </c:choose>
     </div>
