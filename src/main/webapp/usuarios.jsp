@@ -4,6 +4,9 @@
     Author     : joha
 --%>
 
+<%@page import="java.util.Collection"%>
+<%@page import="com.tareas.modelo.Usuario"%>
+<%@page import="com.tareas.servicios.DBUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -15,7 +18,7 @@
         <title>Nuestros usuarios</title>
     </head>
     <body>
-       <%@include file="WEB-INF/vista/menu.jspf" %>
+        <%@include file="WEB-INF/vista/menu.jspf" %>
         <c:if test="${not empty requestScope.mnsFinal}" >
             <div class="alert alert-success" role="alert">
                 ${requestScope.mnsFinal}
@@ -23,17 +26,23 @@
         </c:if>
         <br />
         <div class="container">
-        <h4> REGISTRAR </h4>
-        <div class="card" style="width:400px">
-    <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%">
-    <div class="card-body">
-      <h4 class="card-title">John Doe</h4>
-      <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-      <a href="#" class="btn btn-primary stretched-link">See Profile</a>
-    </div>
-  </div>
-        
-        
+            <div class="row">
+            <%
+                Collection<Usuario> usuarios = DBUsuario.listaUsuarios();
+                for (Usuario us : usuarios) {%>
+<div class="col-sm">
+            <div class="card" style="width:400px">
+                <img class="card-img-top  mx-auto d-block" src="img/perfil(1).png" alt="Card image" style="width:20%">
+                <div class="card-body">
+
+                    <h4 class="card-title text-center"><%= us.getNombre()%></h4>
+                </div>
+            </div>
+</div>
+<% }%>
+            </div>
         </div>
+        
+
     </body>
 </html>
